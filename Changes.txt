@@ -1,3 +1,2 @@
-Add templates and passwords to ACP. - In Progress
-Fix templates
+Add passwords to ACP.
 Make CSS a template?
