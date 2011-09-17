@@ -31,8 +31,8 @@ else{
 	<br>
 	<br>
 	Advanced users:<br>
-	<a href="createtemp.php">Edit or delete template file</a><br>
-	<a href="edittemp.php">Create a new template file</a><br>';
+	<a href="edittemp.php">Edit or delete template file</a><br>
+	<a href="createtemp.php">Create a new template file</a><br>';
 	$page = str_replace("{content}",$content,$page);
 	$page = str_replace("{title}","Content Management Administrative Control Panel",$page);
 	echo $page;

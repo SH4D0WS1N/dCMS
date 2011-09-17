@@ -29,7 +29,7 @@ WHERE id=" . $id;
 $result1 = mysql_query($sql);
 $content = mysql_fetch_array($result1);
 $page = str_replace("{content}",bbc_parse($content["content"]) /* DLCL.php */,$page);
-$page = str_replace("{title}",$content["title"],$page);
+$page = str_replace("{title}",$content["name"],$page);
 echo $page;
 mysql_close($con);
 ?>

@@ -29,7 +29,7 @@ while($row01 = mysql_fetch_array($result01)){
 	WHERE id=".$row01['pageid'];
 	$result22 = mysql_query($sql) or die($sql."<br/><br/>".mysql_error());
 	$row22 = mysql_fetch_array($result22);
-	$navbars[$row01['navitem']] .= "<li><a href='page.php?id=" . $row01['pageid'] . "'><span>" . $row22['name'] . "</span></a></li>";
+	$navbars[$row01['navitem']] .= "<li><a href='" . $dir . "page.php?id=" . $row01['pageid'] . "'><span>" . $row22['name'] . "</span></a></li>";
 }
 $navbar.="<script type='text/javascript'>
 all = new Array();\n";
@@ -44,7 +44,7 @@ $navbar.="function subnav(id){
 		document.getElementById('subnavbar').innerHTML='';
 	}
 }</script>\n";
-$navbar .= "<ul><li><a href='index.php' onMouseOver='subnav(-20000);'><span>Home</span></a></li>";
+$navbar .= "<ul><li><a href='" . $dir . "index.php' onMouseOver='subnav(-20000);'><span>Home</span></a></li>";
 $sql="SELECT *
 FROM navbar";
 $result02 = mysql_query($sql);
@@ -54,7 +54,7 @@ while($row02 = mysql_fetch_array($result02)){
 	WHERE id=".$row02['pageid'];
 	$result33 = mysql_query($sql);
 	$row33 = mysql_fetch_array($result33);
-	$navbar .= " | <li><a href='page.php?id=" . $row02['pageid'] . "' onMouseOver='subnav(" . $row02['id'] . ");'><span>" . $row33['name'] . "</span></a></li>";
+	$navbar .= "<li><a href='" . $dir . "page.php?id=" . $row02['pageid'] . "' onMouseOver='subnav(" . $row02['id'] . ");'><span>" . $row33['name'] . "</span></a></li>";
 }
 $navbar .= "</ul>";
 //$nnStr="<a href='" . $dir . "manage.php'>ACP</a> | <a href='" . $dir . "logout.php'>Log out</a><br><br>";

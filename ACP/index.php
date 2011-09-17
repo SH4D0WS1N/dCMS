@@ -17,13 +17,18 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 include 'inc.php';
-
-$content = '<form action="auth.php" method="post">
-Password: <input type="password" name="pass" />
-<input type="submit" />
-</form>';
-$page = str_replace("{content}",$content,$page);
-$page = str_replace("{title}","Log in to the ACP",$page);
-echo $page;
-mysql_close($con);
+session_start(); 
+if(isset($_SESSION['auth'])){
+	header('Location: manage.php');
+}
+else{
+	$content = '<form action="auth.php" method="post">
+	Password: <input type="password" name="pass" />
+	<input type="submit" />
+	</form>';
+	$page = str_replace("{content}",$content,$page);
+	$page = str_replace("{title}","Log in to the ACP",$page);
+	echo $page;
+	mysql_close($con);
+}
 ?>

@@ -17,23 +17,32 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 session_start(); 
-include 'inc.php';
 if(!isset($_SESSION['auth'])){
 	echo "You are not authenticated";
 }
 else{
-	if($_GET['id']>0){
-		$sql = "DELETE FROM dCMS
-		WHERE id=" . $_GET['id'];
-		mysql_query($sql);
-		header("Location: manage.php");
-	}
-	else{
-		$content = "Invalid page. Stop trying to delete important pages.";
-	}
-
+	include 'inc.php';
+	
+	$id = $_GET['id'];
+	$sql= "SELECT *
+	FROM templates
+	WHERE id=" . $id;
+	$result99 = mysql_query($sql);
+	$editpage = mysql_fetch_array($result99);
+	$content = '<form action="edittemp3.php?id=' . $id . '" method="post">
+	Replace tag: <input type="text" name="pReplacement" value="' . $editpage['replacement'] .
+	'"><br>
+	Replace with:
+	<br>
+	<textarea cols="100" rows="25" name="pContent" wrap=physical>' . $editpage['content'] . '</textarea>
+	<br>
+	<input type="submit" />
+	</form>
+	<br><br>
+	<input type="button" value="Delete" onClick="var a=confirm(\'Are you sure you want to delete this template?\');if(a){window.location=\'deletetemp.php?id=' . $id . '\';}">
+	<br>';
+	$page = str_replace("{title}","Edit a template",$page);
 	$page = str_replace("{content}",$content,$page);
-	$page = str_replace("{title}","Deletion of page status",$page);
 	echo $page;
 	mysql_close($con);
 }

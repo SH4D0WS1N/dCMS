@@ -17,23 +17,26 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 session_start(); 
-include 'inc.php';
 if(!isset($_SESSION['auth'])){
 	echo "You are not authenticated";
 }
 else{
-	if($_GET['id']>0){
-		$sql = "DELETE FROM dCMS
+	include 'inc.php';
+	if($_POST['pReplacement']!="" && $_POST['pContent']!=""){
+		$sql = "UPDATE templates
+		SET replacement='" . $_POST['pReplacement'] .
+		"', content='" . $_POST['pContent'] .
+		"'
 		WHERE id=" . $_GET['id'];
 		mysql_query($sql);
-		header("Location: manage.php");
+		$content = "Template modified successfully<br><a href='edittemp.php'>Return</a>";
 	}
 	else{
-		$content = "Invalid page. Stop trying to delete important pages.";
+		$content = "Replacement tag or content was blank.<br>Template not modified.";
 	}
 
 	$page = str_replace("{content}",$content,$page);
-	$page = str_replace("{title}","Deletion of page status",$page);
+	$page = str_replace("{title}","Edition of template status",$page);
 	echo $page;
 	mysql_close($con);
 }

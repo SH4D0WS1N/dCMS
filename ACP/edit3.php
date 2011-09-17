@@ -32,7 +32,7 @@ else{
 		$content = "Page modified successfully<br><a href='edit.php'>Return</a>";
 	}
 	else{
-		$content = "Page name or content was blank.<br>Page not created.";
+		$content = "Page name or content was blank.<br>Page not modified.";
 	}
 
 	$page = str_replace("{content}",$content,$page);

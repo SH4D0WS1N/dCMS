@@ -22,18 +22,18 @@ if(!isset($_SESSION['auth'])){
 	echo "You are not authenticated";
 }
 else{
-	if($_GET['id']>0){
-		$sql = "DELETE FROM dCMS
+	if($_GET['id']>1){
+		$sql = "DELETE FROM templates
 		WHERE id=" . $_GET['id'];
 		mysql_query($sql);
 		header("Location: manage.php");
 	}
 	else{
-		$content = "Invalid page. Stop trying to delete important pages.";
+		$content = "Invalid template. Stop trying to delete important templates.";
 	}
 
 	$page = str_replace("{content}",$content,$page);
-	$page = str_replace("{title}","Deletion of page status",$page);
+	$page = str_replace("{title}","Deletion of template status",$page);
 	echo $page;
 	mysql_close($con);
 }

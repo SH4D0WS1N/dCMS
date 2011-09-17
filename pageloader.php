@@ -34,4 +34,21 @@ $result3 = mysql_query($sql);
 while($row = mysql_fetch_array($result3)){
 	$page = str_replace($row['replacement'],$row['content'],$page);
 }
+$sql= "SELECT *
+FROM templates
+WHERE id<>-1 AND id<>1";
+$result3 = mysql_query($sql);
+while($row = mysql_fetch_array($result3)){
+	$page = str_replace($row['replacement'],$row['content'],$page);
+}
+if(!isset($_SESSION)){
+	session_start();
+}
+if(!isset($_SESSION['auth'])){
+	$new = "";
+}
+else{
+	$new = "<a href='" . $dir . "ACP/'>ACP</a> | <a href='" . $dir . "'>Home page</a> | <a href='" . $dir . "ACP/logout.php'>Log out</a>";
+}
+$page = str_replace("{ACP}",$new,$page);
 ?>

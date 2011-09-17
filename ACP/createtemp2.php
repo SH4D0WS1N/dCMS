@@ -17,23 +17,35 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 session_start(); 
-include 'inc.php';
 if(!isset($_SESSION['auth'])){
 	echo "You are not authenticated";
 }
 else{
-	if($_GET['id']>0){
-		$sql = "DELETE FROM dCMS
-		WHERE id=" . $_GET['id'];
-		mysql_query($sql);
-		header("Location: manage.php");
+	include 'inc.php';
+	if($_POST['pReplacement']!="" && $_POST['pContent']!=""){
+		$sql = "INSERT INTO templates
+		(
+		replacement,
+		content
+		)
+		VALUES
+		(
+		'" . $_POST['pReplacement'] . "',
+		'" . $_POST['pContent'] . "')";
+		if (mysql_query($sql))
+		{
+			$content = "Template created<br><a href='createtemp.php'>Return</a>";
+		}
+		else
+		{
+			$content = "Error creating template: " . mysql_error();
+		}
 	}
 	else{
-		$content = "Invalid page. Stop trying to delete important pages.";
+		$content = "Replacement tag or content was blank.<br>Template not created.";
 	}
-
 	$page = str_replace("{content}",$content,$page);
-	$page = str_replace("{title}","Deletion of page status",$page);
+	$page = str_replace("{title}","Creation of template status",$page);
 	echo $page;
 	mysql_close($con);
 }
