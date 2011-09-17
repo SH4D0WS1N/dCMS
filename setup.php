@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-echo "<html><head><title>Admin Login - ACP" . '<body><form action="auth.php" method="post">
+echo "<html><head><title>Setup your website</title></head>" . '<body><form action="setup2.php" method="post">
 Set a password: <input type="password" name="pass" /><br>
 Title of website: <input type="text" name="title" /><br>
 The location of this file: <input type="text" name="dir" value="'. dirname(__FILE__) . '"><br>

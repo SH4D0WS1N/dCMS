@@ -20,7 +20,8 @@
 
 //Create a file that will hold the database information but cannot be viewed externally.
 $dbFileName = "dbinfo.php";
-$dbFileHandle = fopen($dbFileName, 'r+') or die("Cannot open or create database file");
+$dbFileHandle = fopen($dbFileName, 'w') or die("Cannot open or create database file");
+
 if(fread($dbFileHandle, 5) == "<?php"){
 	echo "Database information already exists... Using that instead. (If you wish to use other database information, delete dbinfo.php)<br>";
 }
@@ -31,7 +32,6 @@ if (!$con){
 	die("Could not connect: " . mysql_error());
 	}
 $dir = "' . $_POST["dir"] . '";
-$_GLOBALS["dir"] = $dir; //So that sub directories can use this file properly
 ?>');
 }
 fclose($dbFileHandle);
@@ -68,7 +68,7 @@ $sql = "CREATE TABLE templates
 (
 id int NOT NULL AUTO_INCREMENT,
 PRIMARY KEY(id),
-replace text,
+replacement text,
 content blob
 )";
 
@@ -104,10 +104,10 @@ else
 	die("Error creating table: " . mysql_error());
 }
 
-$sql = "INSERT INTO template
+$sql = "INSERT INTO templates
 (
 id,
-replace,
+replacement,
 content
 )
 VALUES
@@ -136,10 +136,10 @@ else
 	die("Error creating template: " . mysql_error());
 }
 
-$sql = "INSERT INTO template
+$sql = "INSERT INTO templates
 (
 id,
-replace,
+replacement,
 content
 )
 VALUES
@@ -158,10 +158,10 @@ else
 	die("Error creating template: " . mysql_error());
 }
 
-$sql = "INSERT INTO template
+$sql = "INSERT INTO templates
 (
 id,
-replace,
+replacement,
 content
 )
 VALUES
@@ -180,10 +180,10 @@ else
 	die("Error creating template: " . mysql_error());
 }
 
-$sql = "INSERT INTO template
+$sql = "INSERT INTO templates
 (
 id,
-replace,
+replacement,
 content
 )
 VALUES
@@ -264,12 +264,14 @@ else
 $sql = "INSERT INTO passwords
 (
 id,
-text
+password
 )
 VALUES
 (
-0, " . $salt
-. ")";
+-1,
+'" . $salt . 
+"'
+)";
 
 if (mysql_query($sql))
 {
@@ -283,12 +285,14 @@ else
 $sql = "INSERT INTO passwords
 (
 id,
-text
+password
 )
 VALUES
 (
-1, " . hash("sha256", $salt.$_POST["pass"])
-. ")";
+1,
+'" . hash("sha256", $salt.$_POST["pass"]) . 
+"'
+)";
 
 if (mysql_query($sql))
 {
