@@ -1,0 +1,58 @@
+#navbar{
+width:auto;
+height:36px;
+background:url(img/navbar-bg.png) left top repeat-x; }
+#navbar .mainbar{
+display:block;
+height:36px;
+background:url(img/right-round.png) right top no-repeat; }
+#navbar ul, #navbar ul li{
+border:0px;
+margin:0px;
+padding:0px;
+list-style:none;
+height:36px;
+line-height:36px; } #navbar ul{
+background:url(img/left-round.png) left top no-repeat; } 
+#navbar ul li{
+float:left;
+display:block;
+line-height:36px; } 
+#navbar ul li a{
+color:#403e32;
+text-decoration:none;
+font-weight:bold;
+display:block; } 
+#navbar ul li a span{
+padding:0 20px 0 0;
+height:36px;
+line-height:36px;
+display:block;
+margin-left:20px; }
+#navbar .navhome a, #navbar .navhome a:hover{
+background:url(img/a-bg.png) left top no-repeat;
+height:36px;
+line-height:36px; } 
+#navbar .navhome a span, #navbar .navhome a:hover span{
+color:#FFFFFF;
+background:url(img/span-bg.png) right top no-repeat;
+height:36px;
+line-height:36px; } 
+#navbar ul li a:hover{
+background:url(img/ahover-bg.png) left top no-repeat;
+height:36px;
+line-height:36px; } 
+#navbar ul li a:hover span{
+background:url(img/spanhover-bg.png) right top no-repeat;
+height:36px;
+line-height:36px; }
+headertitle {
+font-size:40;
+}
+body{
+background-color:black;
+color:white;
+}
+head{
+height:200px;
+}
