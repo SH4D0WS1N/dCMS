@@ -18,6 +18,7 @@
 */
 include '../DLCL.php';
 include '../dbinfo.php';
+mysql_select_db("dCMS", $con);
 include '../header.php';
 include '../pageloader.php';
 ?>

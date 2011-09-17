@@ -21,7 +21,7 @@ if(!isset($_SESSION['auth'])){
 	echo "You are not authenticated";
 }
 else{
-	include $GLOBALS["dir"] . 'inc.php';
+	include 'inc.php';
 	$content = '<form action="create2.php" method="post">
 	Page name: <input type="text" name="pName" />
 	<br>

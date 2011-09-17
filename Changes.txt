@@ -1,2 +1,3 @@
-Templates - In progress
-Settings
+Add templates and passwords to ACP. - In Progress
+Fix templates
+Make CSS a template?

@@ -17,8 +17,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 include 'DLCL.php';
-//include 'dbinfo.php';
-include("dbinfo.php");
+include 'dbinfo.php';
+mysql_select_db("dCMS", $con);
 include 'header.php';
 include 'pageloader.php';
 ?>

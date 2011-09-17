@@ -17,7 +17,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 session_start(); 
-include $GLOBALS["dir"] . 'inc.php';
+include 'inc.php';
 if(!isset($_SESSION['auth'])){
 	echo "You are not authenticated";
 }

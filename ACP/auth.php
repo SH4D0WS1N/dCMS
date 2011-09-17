@@ -16,13 +16,23 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-include $GLOBALS["dir"] . "inc.php";
+include "inc.php";
 $sql = "SELECT *
 		FROM passwords";
 $result = mysql_query($sql) or die ("Unable to access password table: " . mysql_error());
+$sql = "SELECT *
+		FROM passwords
+		WHERE id=-1";
+$result2 = mysql_query($sql) or die ("Unable to access password table: " . mysql_error());
+$pepper = mysql_fetch_array($result2);
+$salt = $pepper["password"];
 $asdf = false;
 while($row = mysql_fetch_array($result)){
-	if($_POST['pass'] == $row['password']){
+	echo "Password attempted: " . $_POST['pass'] . "<br>";
+	echo "Hash of attempted pw and the salt: " . hash("sha256", $salt.$_POST['pass']) . "<br>";
+	echo "Salt: " . $salt . "<br>";
+	echo "Stored hashed password being tried where id = " . $row["id"] . ": " . $row["password"] . "<br>";
+	if($row["password"] == hash("sha256", $salt.$_POST['pass'])){
 		$asdf = true;
 	}
 }
@@ -32,7 +42,6 @@ if($asdf){
 		header('Location: manage.php');
 	}
 else{
-	include 'inc.php';
 	$content = "Incorrect password. Attempt recorded.";
 	$page = str_replace("{content}",$content,$page);
 	$page = str_replace("{title}","Authentication page",$page);

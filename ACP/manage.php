@@ -21,13 +21,18 @@ if(!isset($_SESSION['auth'])){
 	echo "You are not authenticated";
 }
 else{
-	include $GLOBALS["dir"] . 'inc.php';
+	include 'inc.php';
 
 	$content = '<a href="edit.php">Edit or Delete Page
 	<br>
 	<a href="create.php">Create Page</a>
 	<br>
-	<a href="navbar.php">Edit navbar</a>';
+	<a href="navbar.php">Edit navbar</a>
+	<br>
+	<br>
+	Advanced users:<br>
+	<a href="createtemp.php">Edit or delete template file</a><br>
+	<a href="edittemp.php">Create a new template file</a><br>';
 	$page = str_replace("{content}",$content,$page);
 	$page = str_replace("{title}","Content Management Administrative Control Panel",$page);
 	echo $page;

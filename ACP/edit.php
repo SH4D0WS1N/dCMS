@@ -21,7 +21,7 @@ if(!isset($_SESSION['auth'])){
 	echo "You are not authenticated";
 }
 else{
-	include $GLOBALS["dir"] . 'inc.php';
+	include 'inc.php';
 	
 	$sql = "SELECT *
 	FROM dCMS";

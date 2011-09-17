@@ -9,17 +9,18 @@ FROM templates
 WHERE id=-1";
 $result2 = mysql_query($sql);
 $header = mysql_fetch_array($result2);
-$temp = str_replace("{navbar}",$navbar,$header)
+$temp = str_replace("{navbar}",$navbar,$header);
 
 //////////////////////////////////////////////////////////
 // Replaces {header} with the newly created header, $temp.
 //////////////////////////////////////////////////////////
 $sql= "SELECT *
 FROM templates
-WHERE id=0";
+WHERE id=1";
 $result4 = mysql_query($sql);
-$page = mysql_fetch_array($result4);
-$page = str_replace("{header}",$temp,$page);
+$page1 = mysql_fetch_array($result4);
+$page=$page1["content"];
+$page = str_replace("{header}",$temp["content"],$page);
 
 //////////////////////////////////////////////////////////
 // Replaces the rest of their tags with their content.
@@ -28,9 +29,9 @@ $page = str_replace("{header}",$temp,$page);
 //////////////////////////////////////////////////////////
 $sql= "SELECT *
 FROM templates
-WHERE id<>-1 AND id<>0";
+WHERE id<>-1 AND id<>1";
 $result3 = mysql_query($sql);
 while($row = mysql_fetch_array($result3)){
-	$page = str_replace($row['replace'],$row['content'],$page);
+	$page = str_replace($row['replacement'],$row['content'],$page);
 }
 ?>
